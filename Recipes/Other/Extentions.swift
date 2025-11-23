@@ -1,0 +1,23 @@
+//
+//  Extentions.swift
+//  Recipes
+//
+//  Created by Артемий Образцов on 23.11.2025.
+//
+import Foundation
+
+extension Encodable {
+    func asDictionary() -> [String: Any] {
+        guard let data = try? JSONEncoder().encode(self) else {
+            return [:]
+        }
+
+        do {
+            let json =
+                try JSONSerialization.jsonObject(with: data) as? [String: Any]
+            return json ?? [:]
+        } catch {
+            return [:]
+        }
+    }
+}
