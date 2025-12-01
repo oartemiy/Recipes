@@ -134,8 +134,8 @@ class EditRecipeViewModel: ObservableObject {
             return false
         }
 
-        guard recipe.recipeSteps.count < 0 else {
-            self.errorMessage = "Add steps"
+        guard recipe.recipeSteps.count > 0 else {
+            self.errorMessage = "Add steps current is \(recipe.recipeSteps.count)"
             return false
         }
 

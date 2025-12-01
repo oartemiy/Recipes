@@ -30,11 +30,14 @@ struct EditRecipeView: View {
                 }
                 
                 Button("Save") {
+
                     if viewModel.canSave(oldRecipeOptional: recipeOptional) {
                         viewModel.save(oldRecipeOptional: recipeOptional)
+                        print(viewModel.errorMessage)
                         newRecipePresented = false
                     } else {
                         viewModel.showingErrorAlert = true
+                        print(viewModel.errorMessage)
                     }
                 }.padding().frame(maxHeight: 80)
             }
@@ -140,6 +143,7 @@ struct EditRecipeView: View {
             Section("Step \(stepNumber + 1)") {
                 RecipeStepView(recipeStep: $viewModel.recipe.recipeSteps[stepNumber]) {
                     viewModel.removeStep(stepNumber: stepNumber)
+                
                 }
             }
         }
