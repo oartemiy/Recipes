@@ -23,7 +23,7 @@ struct RecipeCloudView: View {
     var body: some View {
         Form {
             ForEach(notes) { note in
-                RecipeView(userId: userId, recipe: note.recipe)
+                RecipeView(userId: note.id, recipe: note.recipe)
             }
         }
     }
