@@ -7,20 +7,26 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
+    @StateObject private var viewModel = MainViewModel()
+    
     var body: some View {
-        TabView {
-            LoginView().tabItem {
-                Label("Login", systemImage: "person.circle")
-            }
-
-            RegisterView().tabItem {
-                Label("Register", systemImage: "person.badge.plus")
+        if viewModel.isSignedIn && !viewModel.currentUserId.isEmpty {
+            AccountView(userId: viewModel.currentUserId)
+        } else {
+            TabView {
+                LoginView().tabItem {
+                    Label("Login", systemImage: "person.circle")
+                }
+                
+                RegisterView().tabItem {
+                    Label("Register", systemImage: "person.badge.plus")
+                }
             }
         }
     }
 }
 
 #Preview {
-    ContentView()
+    MainView()
 }
